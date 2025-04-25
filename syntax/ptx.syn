@@ -1,0 +1,599 @@
+;Syntax highlighting for NVIDIA CUDA/OpenCL PTX 2.3 (Parallel Thread Execution)(Virtual Instruction Set/Assembler) 
+;
+;version 0.04 created on 24 june 2011 by Skybuck Flying
+;
+;e-mail: skybuck2000@hotmail.com
+;
+
+C=1
+
+[Syntax]
+
+
+
+; a number in the range 1 to 6, which specifies how many of the keyword sections are in the first namespace. 
+;There is only one namespace when "C=1" or "LaTeX=1", so this value must be 6. There are two namespaces when "HTML=1", 
+;so this value can be between 1 and 5, and defaults to 1. Change it to 2, say, 
+;if you want to be able to display HTML tags in two colors, 
+;and split the tag keywords between the [Keywords 1] and [Keywords 2] sections, depending on which color you want them in. 
+Namespace1 = 6
+
+
+;"Yes" if keywords are not case sensitive, otherwise "No".
+IgnoreCase = No
+KeyWordLength = 0
+
+;characters that can be used for brackets.
+BracketChars = {}[]<>
+
+;characters that can be used for operators.
+OperatorChars = @!*/%+-><=&^|&?:~()
+
+; the character used to start a pre-processor statement.
+PreprocStart = #
+
+;the characters that prefix hexadecimal numbers. If this entry is omitted, it defaults to "0x".
+HexPrefix = 0x ;0X0f0F0d0D 
+
+;a string of characters that switch on keyword recognition (e.g. "<"), or leave blank.
+SyntaxStart = 
+
+;a string of characters that switch off keyword recognition (e.g. ">"), or leave blank.
+SyntaxEnd = 
+
+;a string of characters that start a multiple line comment, or leave blank.
+CommentStart = /*
+
+;a string of characters that end a multiple line comment, or leave blank.
+CommentEnd = */
+
+;an alternative string of characters that start a multiple line comment.
+CommentStartAlt = 
+
+;an alternative string of characters that end a multiple line comment.
+CommentEndAlt = 
+
+;a string of characters that start a single line comment (e.g. "//" or "REM"), or leave blank.
+SingleComment = //
+SingleCommentCol = 
+
+;an alternative string of characters that start a single line comment (e.g. "//" or "REM"), or leave blank.
+SingleCommentAlt = 
+SingleCommentColAlt = 
+
+;The character that is used to escape either of the SingleComment strings.
+SingleCommentEsc = 
+StringsSpanLines = 
+
+;The character that indicates the start of a string (e.g. double quote).
+StringStart = "
+
+;The character that indicates the end of a string (e.g. double quote).
+StringEnd = "
+
+;An alternative character that can be used to delimit strings, if the string contains the StringEnd character.
+StringAlt = 
+
+;The character that is used to escape the StringEnd character, if it is part of a string (e.g. "\").
+StringEsc = 
+
+;The character that is used to start a character literal (e.g. single quote).
+CharStart = '
+
+;The character that is used to end a character literal (e.g. single quote).
+CharEnd = '
+
+;The character that is used to escape the CharEnd character, if it is part of a character literal (e.g. "\").
+CharEsc = 
+
+
+;directive statements:
+[Keywords 1] 
+
+;PTX Module Directives
+.version
+.target
+.address_size
+
+;Specifying Kernel Entry Points and Functions
+.entry
+.func
+
+;Control Flow Directives
+.branchtargets
+.calltargets
+.callprototype
+
+;Performance-Tuning Directives
+.maxnreg
+.maxntid
+.reqntid
+.minnctapersm
+.maxnctapersm ; (deprecated)
+.pragma
+
+;Debugging Directives
+@@DWARF	      ; (deprecated)
+.section
+.file
+.loc
+
+; Linking Directives
+.extern
+.visible
+
+; Pragma Strings
+.pragma
+
+;common directive statements:
+.align
+.file
+.maxntid
+.shared
+.branchtargets
+.func
+.minnctapersm
+.sreg
+.callprototype
+.global
+.param
+.target
+.calltargets
+.local
+.pragma
+.tex
+.const
+.loc
+.reg
+.version
+.entry
+.maxnctapersm
+.reqntid
+.visible
+.extern
+.maxnreg
+.section
+
+;instruction statements (keywords):
+[Keywords 2] 
+
+; Instruction statements
+
+; Integer Arithmetic Instructions
+add
+sub
+add.cc
+addc
+sub.cc
+subc
+mul
+mad
+mul24
+mad24
+sad
+div
+rem
+abs
+neg
+min
+max
+popc
+clz
+bfind
+brev
+bfe
+bfi
+prmt
+
+; Floating-Point Instructions
+testp
+copysign
+add
+sub
+mul
+fma
+mad
+div
+abs
+neg
+min
+max
+rcp
+sqrt
+rsqrt
+sin
+cos
+lg2
+ex2
+
+; Comparison and Selection Instructions
+set
+setp
+selp
+slct
+
+; Logic and Shift Instructions
+and
+or
+xor
+not
+cnot
+shl
+shr
+
+; Data Movement and Conversion Instructions
+mov
+ld
+ldu
+st
+prefetch
+prefetchu
+isspacep
+cvta
+cvt
+
+; Texture and Surface Instructions
+tex
+tld4
+txq
+suld
+sust
+sured
+suq
+
+; Control Flow Instructions
+{ }
+@
+bra
+call
+ret
+exit
+
+; Parallel Synchronization and Communication Instructions
+bar
+membar
+atom
+red
+vote
+
+; Video Instructions
+vadd
+vsub
+vabsdiff
+vmin
+vmax
+vshl
+vshr
+vmad
+vset
+
+; Miscellaneous Instructions
+trap
+brkpt
+pmevent
+
+
+; predefined identifiers
+[Keywords 3]
+%clock
+%laneid
+%lanemask_gt
+%pm0
+%pm1
+%pm2
+%pm3
+%clock64
+%lanemask_eq
+%nctaid
+%smid
+%ctaid
+%lanemask_le
+%ntid
+%tid
+%envreg0
+%envreg1
+%envreg2
+%envreg3
+%envreg4
+%envreg5
+%envreg6
+%envreg7
+%envreg8
+%envreg9
+%envreg10
+%envreg11
+%envreg12
+%envreg13
+%envreg14
+%envreg15
+%envreg16
+%envreg17
+%envreg18
+%envreg19
+%envreg20
+%envreg21
+%envreg22
+%envreg23
+%envreg24
+%envreg25
+%envreg26
+%envreg27
+%envreg28
+%envreg29
+%envreg30
+%envreg31
+%lanemask_lt
+%nsmid
+%warpid
+%gridid
+%lanemask_ge
+%nwarpid
+WARP_SZ
+
+; type fields (included below)
+;width
+;height
+;depth
+;channel_data_type
+;channel_order
+;normalized_coords
+;filter_mode
+;addr_mode_0
+;addr_mode_1
+;addr_mode_2
+
+
+
+; state spaces
+[Keywords 4]
+.reg
+.sreg
+.const
+.global
+.local
+.param
+.shared
+.tex
+
+;kernel parameter attributes
+.ptr
+
+
+;type values
+nearest
+linear
+wrap
+mirror
+clamp_ogl
+clamp_to_edge
+clamp_to_border
+
+sm_20
+sm_10
+sm_11
+sm_12
+sm_13
+texmode_unified
+texmode_independent
+map_f64_to_f32
+
+; fundamental type specifiers
+[Keywords 5] 
+.s8
+.s16
+.s32
+.s64
+.u8
+.u16
+.u32
+.u64
+.f16
+.f32
+.f64
+.b8
+.b16
+.b32
+.b64
+.pred
+
+[Keywords 6] 
+
+; floating point rounding mode modifiers
+.rn
+.rz
+.rm
+.rp
+
+; integer rounding mode modifiers
+.rni
+.rzi
+.rmi
+.rpi
+
+; Cache Operators for Memory Load Instructions
+.ca 
+.cg
+.cs 
+.lu
+.cv
+
+; Cache Operators for Memory Store Instructions
+.wb
+.cg
+.cs
+.wt
+
+
+; Texture, Sampler, and Surface Types
+.texref
+.samplerref
+.surfref
+
+; specific instruction modifiers
+
+; add
+.sat
+.ftz
+
+; addc
+; subc
+.cc
+
+; mul
+; mad
+; mul24 (not wide)
+; mad24 (not wide)
+.hi
+.lo
+.wide
+
+; prmt
+.f4e
+.b4e
+.rc8
+.ecl
+.ecr
+.rc16
+
+; testp
+.finite
+.infinite
+.number
+.notanumber
+.normal
+.subnormal
+
+; div
+.approx
+.full
+
+; set
+.eq
+.ne
+.lt
+.le
+.gt
+.ge
+
+.equ
+.neu
+.ltu
+.leu
+.gtu
+.geu
+
+.num
+.nan
+
+.ls
+.hs
+
+; ld
+.volatile
+
+; ld (vector type)
+.v2
+.v4
+
+;prefetch
+.L1
+.L2
+
+;tex
+.1d
+.2d
+.3d
+.a1d
+.a2d
+
+; tld4
+.r
+.g
+.b
+.a
+
+; txq
+.width
+.height
+.depth
+.channel_data_type
+.channel_order
+.normalized_coords
+
+ 
+.force_unnormalized_coords
+.filter_mode
+.addr_mode_0
+.addr_mode_1
+.addr_mode_2
+
+; suld
+.trap
+.clamp
+.zero
+
+; bra
+; vote
+.all
+.any
+.uni
+.ballot
+
+; bar
+.sync
+.arrive
+.red
+
+; membar
+.cta
+.gl
+.sys
+
+;atomic
+.and
+.or
+.xor
+.cas
+.exch
+.add
+.inc
+.dec
+.min
+.max
+
+;video instructions
+.b0
+.b1
+.b2
+.b3
+.h0
+.h1
+.wrap
+.shr7
+.shr15
+
+;dawrf (not an instruction but debugging directive)
+.byte 
+.4byte 
+.quad 
+.4byte 
+.quad
+
+; section (debugging directive)
+; already defined in type specifiers above
+; still fun to overrride it here ;)
+.b8 
+.b16
+.b32 
+.b64 
+
+
+[Preprocessor keywords] 
+#include
+#define
+#if
+#ifdef
+#else
+#endif
+#line
+#file

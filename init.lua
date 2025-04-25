@@ -7,3 +7,12 @@ if vim.fn.has('termguicolors') == 1 then
   vim.opt.termguicolors = true
 end
 
+-- this is for ptx syntax highlighting
+vim.filetype.add({
+  extension = {
+    ptx = function()
+      vim.bo.syntax = "ptx"
+      return "ptx"
+    end,
+  },
+})
